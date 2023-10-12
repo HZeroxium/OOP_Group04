@@ -7,4 +7,4 @@ using namespace std;
 
 class MyPupil;
 class MyArray;
-class Program;
+class MyProgram;
