@@ -1,5 +1,220 @@
 #include "MyProgram.h"
 
+int MyProgram::handle_fraction()
+{
+    while (true)
+    {
+        cout << "========================FRACTION========================\n";
+        cout << "Choose an operation: " << endl; // endl = "\n
+        cout << "1. Add two fractions" << endl;
+        cout << "2. Subtract two fractions" << endl;
+        cout << "3. Multiply two fractions" << endl;
+        cout << "4. Divide two fractions" << endl;
+        cout << "5. Negative fraction" << endl;
+        cout << "6. Reduce fraction" << endl;
+        cout << "7. Convert fraction to double" << endl;
+        cout << "8. Inverse fraction" << endl;
+        cout << "0. Exit" << endl;
+        cout << "Choose the following options (0 - 8): ";
+        int choice;
+        cin >> choice;
+        cin.ignore();
+        if (choice == 0)
+            return 0;
+        if (choice < 0 || choice > 8)
+        {
+            cout << "Invalid choice! Please choose again!" << endl;
+            continue;
+        }
+        if (choice >= 1 && choice <= 4)
+        {
+            MyFraction a, b;
+            a.input("Enter first fraction: ");
+            b.input("Enter second fraction: ");
+            switch (choice)
+            {
+            case 1:
+                myFraction = a + b;
+                break;
+            case 2:
+                myFraction = a - b;
+                break;
+            case 3:
+                myFraction = a * b;
+                break;
+            case 4:
+                try
+                {
+                    if (b.getNumerator() == 0)
+                        throw "# Denominator cannot be zero!";
+                    myFraction = a / b;
+                }
+                catch (const char *msg)
+                {
+                    cout << msg << endl;
+                    continue;
+                }
+            }
+            myFraction.output("Result: ");
+        }
+        else
+        {
+            myFraction.input("Enter fraction: ");
+            switch (choice)
+            {
+            case 5:
+                myFraction = -myFraction;
+                break;
+            case 6:
+                myFraction.reduce();
+                break;
+            case 7:
+                cout << "Fraction to double: " << myFraction.toDouble() << endl;
+                break;
+            case 8:
+                myFraction.inverse();
+                break;
+            }
+            if (choice != 7)
+                myFraction.output("Result: ");
+        }
+    }
+}
+
+int MyProgram::handle_complex()
+{
+    while (true)
+    {
+        cout << "========================COMPLEX========================\n";
+        cout << "Choose an operation: " << endl;
+        cout << "1. Add two complex numbers" << endl;
+        cout << "2. Subtract two complex numbers" << endl;
+        cout << "3. Multiply two complex numbers" << endl;
+        cout << "4. Divide two complex numbers" << endl;
+        cout << "5. Compute module" << endl;
+        cout << "0. Exit" << endl;
+        cout << "Choose the following options (0 - 5): ";
+        int choice;
+        cin >> choice;
+        cin.ignore();
+        if (choice == 0)
+            return 0;
+        if (choice < 0 || choice > 5)
+        {
+            cout << "Invalid choice! Please choose again!" << endl;
+            continue;
+        }
+        if (choice >= 1 && choice <= 4)
+        {
+            MyComplex a, b;
+            a.input("Enter first complex number: ");
+            b.input("Enter second complex number: ");
+            switch (choice)
+            {
+            case 1:
+                myComplex = a + b;
+                break;
+            case 2:
+                myComplex = a - b;
+                break;
+            case 3:
+                myComplex = a * b;
+                break;
+            case 4:
+                myComplex = a / b;
+                break;
+            }
+            myComplex.output("Result complex: ");
+        }
+        else
+        {
+            myComplex.input("Enter complex number: ");
+            cout << "Module of complex number: " << myComplex.modulus() << endl;
+        }
+    }
+}
+
+int MyProgram::handle_monomial()
+{
+    while (true)
+    {
+        cout << "========================MONOMIAL========================\n";
+        cout << "Choose an operation: " << endl;
+        cout << "1. Add two monomials" << endl;
+        cout << "2. Subtract two monomials" << endl;
+        cout << "3. Multiply two monomials" << endl;
+        cout << "4. Divide two monomials" << endl;
+        cout << "5. Compute value" << endl;
+        cout << "6. Derivative" << endl;
+        cout << "7. Anti-derivative" << endl;
+        cout << "0. Exit" << endl;
+        cout << "Choose the following options (0 - 7): ";
+        int choice;
+        cin >> choice;
+        cin.ignore();
+        if (choice == 0)
+            return 0;
+        if (choice < 0 || choice > 7)
+        {
+            cout << "Invalid choice! Please choose again!" << endl;
+            continue;
+        }
+        if (choice >= 1 && choice <= 4)
+        {
+            MyMonomial a, b;
+            a.input("Enter first monomial: ");
+            b.input("Enter second monomial: ");
+            switch (choice)
+            {
+            case 1:
+                myMonomial = a + b;
+                break;
+            case 2:
+                myMonomial = a - b;
+                break;
+            case 3:
+                myMonomial = a * b;
+                break;
+            case 4:
+                try
+                {
+                    if (b.getCoefficient() == 0)
+                        throw "# Denominator cannot be zero!";
+                    myMonomial = a / b;
+                }
+                catch (const char *msg)
+                {
+                    cout << msg << endl;
+                    continue;
+                }
+            }
+            myMonomial.output("Result monomial: ");
+        }
+        else
+        {
+            myMonomial.input("Enter monomial: ");
+            switch (choice)
+            {
+            case 5:
+                int x;
+                cout << "Enter x: ";
+                cin >> x;
+                cin.ignore();
+                cout << "Value of monomial: " << myMonomial.evaluate(x) << endl;
+                break;
+            case 6:
+                myMonomial.derivative();
+                cout << "Derivative of monomial: " << myMonomial << endl;
+                break;
+            case 7:
+                myMonomial.antiDerivative();
+                cout << "Anti-derivative of monomial: " << myMonomial << endl;
+                break;
+            }
+        }
+    }
+}
+
 int MyProgram::handle_pupil()
 {
     while (true)
@@ -147,10 +362,9 @@ int MyProgram::handle_array()
     }
 }
 
-MyProgram::MyProgram(const MyPupil &myPupil, const MyArray &myArray)
+MyProgram::MyProgram(const MyFraction &myFraction, const MyComplex &myComplex, const MyMonomial &myMonomial, const MyPupil &myPupil, const MyArray &myArray)
+    : myFraction(myFraction), myComplex(myComplex), myMonomial(myMonomial), myPupil(myPupil), myArray(myArray)
 {
-    this->myPupil = myPupil;
-    this->myArray = myArray;
 }
 
 void MyProgram::run()
@@ -158,10 +372,13 @@ void MyProgram::run()
     while (true)
     {
         cout << "======================PROGRAM======================" << endl;
-        cout << "1. Handle pupil" << endl;
-        cout << "2. Handle array" << endl;
+        cout << "1. Handle fraction" << endl;
+        cout << "2. Handle complex" << endl;
+        cout << "3. Handle monomial" << endl;
+        cout << "4. Handle pupil" << endl;
+        cout << "5. Handle array" << endl;
         cout << "0. Exit" << endl;
-        cout << "Choose the following options (0 - 2): ";
+        cout << "Choose the following options (0 - 5): ";
         int choice;
         cin >> choice;
         cin.ignore();
@@ -170,7 +387,7 @@ void MyProgram::run()
             cout << "Goodbye!" << endl;
             return;
         }
-        if (choice < 0 || choice > 2)
+        if (choice < 0 || choice > 5)
         {
             cout << "Invalid choice! Please choose again!" << endl;
             continue;
@@ -178,10 +395,18 @@ void MyProgram::run()
         switch (choice)
         {
         case 1:
+            handle_fraction();
+            break;
+        case 2:
+            handle_complex();
+            break;
+        case 3:
+            handle_monomial();
+            break;
+        case 4:
             handle_pupil();
             break;
-
-        case 2:
+        case 5:
             handle_array();
             break;
         }
