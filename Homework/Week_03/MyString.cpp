@@ -62,7 +62,8 @@ MyString::MyString(char *data, const int &size)
 
 MyString::~MyString()
 {
-    delete[] data;
+    if (data != nullptr)
+        delete[] data;
     data = nullptr;
     size = 0;
 }
@@ -244,23 +245,23 @@ int MyString::find(int position, const char *pattern) const
 // Input - Output
 std::istream &operator>>(std::istream &inp, MyString &self)
 {
-    delete[] self.data;
-    self.data = nullptr;
-    self.size = 0;
-
-    for (char token; inp.get(token) && token != '\n' && token != EOF;)
+    char buffer[1000];
+    int new_size = 0;
+    // Get the input from the user
+    inp.getline(buffer, 1000);
+    // Get the size of the input
+    while (buffer[new_size] != '\0')
     {
-        char *newData = new char[self.size + 2]; // +2 for the new character and null terminator
-        if (self.data)
-        {
-            strCopySize(newData, self.data, self.size);
-            delete[] self.data;
-        }
-        newData[self.size] = token;
-        newData[self.size + 1] = '\0';
-        self.data = newData;
-        ++self.size;
+        new_size++;
     }
+    // Allocate memory for the string
+    if (self.data != nullptr)
+        delete[] self.data;
+    self.data = new char[new_size + 1];
+    // Copy the input to the string
+    strCopy(self.data, buffer);
+    self.size = new_size;
+    self.data[new_size] = '\0';
     return inp;
 }
 
