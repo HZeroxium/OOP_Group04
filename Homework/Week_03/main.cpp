@@ -8,12 +8,12 @@ int MyStringExample()
     using std::cout;
     using std::endl;
 
-    MyString s("Hello"), t("World");
-    // cout << "Enter string s: ";
-    // cin >> s;
+    MyString s, t;
+    cout << "Enter string s: ";
+    cin >> s;
 
-    // cout << "Enter string t: ";
-    // cin >> t;
+    cout << "Enter string t: ";
+    cin >> t;
 
     cout << endl;
     cout << "String s: " << s << endl;
