@@ -9,7 +9,8 @@ private:
     char *data;
     int size;
 
-public: // Constructor & Destructor
+public:
+    // Constructor & Destructor
     MyString();
     MyString(const char *const_data);
     MyString(char *data, const int &size);
@@ -22,10 +23,10 @@ public: // Methods
     char *operator+(const MyString &other) const;
     char *operator+(const char *other) const;
     friend char *operator+(const char *lhs, const MyString &rhs);
-    bool insert(int position, char *insert_data);
+    bool insert(int position, const char *insert_data);
     bool erase(int position, int erase_length);
-    bool replace(int position, int replace_length, char *replace_data);
-    int find(int position, char *pattern) const;
+    bool replace(int position, int replace_length, const char *replace_data);
+    int find(int position, const char *pattern) const;
 
 public: // Input - Output
     friend std::istream &operator>>(std::istream &inp, MyString &self);

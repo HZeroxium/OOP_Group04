@@ -8,47 +8,47 @@ int MyStringExample()
     using std::cout;
     using std::endl;
 
-    MyString s;
-    cout << "Input s: ";
-    cin >> s;
+    MyString s("Hello"), t("World");
+    // cout << "Enter string s: ";
+    // cin >> s;
 
-    MyString t;
-    cout << "Input t: ";
-    cin >> t;
-
-    cout << endl;
-    cout << "cout << s: " << s << endl;
-    cerr << "cerr << t: " << t << endl;
-    cerr << "string after output: s = " << s << endl;
+    // cout << "Enter string t: ";
+    // cin >> t;
 
     cout << endl;
-    cout << "s.length() = " << s.length() << endl;
-    cerr << "string after taking length: s = " << s << endl;
+    cout << "String s: " << s << endl;
+    cerr << "String t: " << t << endl;
 
     cout << endl;
-    cout << "s.subString(2, 3) = " << s.subString(2, 3) << endl;
-    cerr << "string after taking substring: s = " << s << endl;
+    cout << "Length of string s: " << s.length() << endl;
 
     cout << endl;
-    cout << "s+\" \"+t = " << s + " " + t << endl;
-    cerr << "string after addition operation: s = " << s << endl;
-    cerr << "string after addition operation: t = " << t << endl;
+    cout << "Result of s.subString(2, 3) = " << s.subString(2, 3) << endl;
+    cerr << "String s after taking substring: " << s << endl;
 
     cout << endl;
-    cout << "s.insert(1, \"!\") = " << s.insert(1, "!") << endl;
-    cerr << "string after insertion: s = " << s << endl;
+    cout << "s + \" \" + t = " << s + " " + t << endl;
+    cerr << "String s after addition operation: " << s << endl;
+    cerr << "String t after addition operation: " << t << endl;
 
-    // cout << endl;
-    // cout << "s.erase(0, 2) = " << s.erase(0, 2) << endl;
-    // cerr << "string after erasure: s = " << s << endl;
+    cout << endl;
+    s.insert(1, "!");
+    cout << "Result of s.insert(1, \"!\") = " << s << endl;
+    cerr << "String s after insertion: s = " << s << endl;
 
-    // cout << endl;
-    // cout << "s.replace(0, 2, \"abc\") = " << s.replace(0, 2, "abc") << endl;
-    // cerr << "string after replacement: s = " << s << endl;
+    cout << endl;
+    s.erase(0, 2);
+    cout << "s.erase(0, 2) = " << s << endl;
+    cerr << "String after erasure: s = " << s << endl;
 
-    // cout << endl;
-    // cout << "s.find(0, 11) = " << s.find(0, "11") << endl;
-    // cerr << "string after finding: s = " << s << endl;
+    cout << endl;
+    s.replace(0, 2, "abc");
+    cout << "Result of s.replace(0, 2, \"abc\") = " << s << endl;
+    cerr << "String after replacement: s = " << s << endl;
+
+    cout << endl;
+    cout << "Result of s.find(0, \"ll\") = " << s.find(0, "ll") << endl;
+    cerr << "String after finding: s = " << s << endl;
     return 0;
 }
 

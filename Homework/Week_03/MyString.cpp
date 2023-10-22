@@ -1,4 +1,3 @@
-#pragma once
 #include "MyString.h"
 
 char *strCopy(char *dest, const char *src)
@@ -119,18 +118,21 @@ char *operator+(const char *lhs, const MyString &rhs)
     return new_str;
 }
 
-bool MyString::insert(int position, char *insert_data)
+bool MyString::insert(int position, const char *insert_data)
 {
     if (position < 0 || position > size)
         return false;
 
-    int new_size = this->size + (int)strLength(insert_data);
+    const int insert_data_length = static_cast<int>(strLength(insert_data));
+    int new_size = length() + insert_data_length;
+    const int start_position = position;
+    const int end_position = position + insert_data_length;
     char *new_string = new char[new_size + 1];
     int i = 0, j = 0, idx = 0;
 
     while (idx < new_size)
     {
-        if (idx >= position && idx <= position + (int)strLength(insert_data))
+        if (idx >= start_position && idx < end_position)
         {
             new_string[idx] = insert_data[j];
             j++;
@@ -142,7 +144,7 @@ bool MyString::insert(int position, char *insert_data)
         }
         idx++;
     }
-    new_string[idx] = '\0';
+    new_string[new_size] = '\0';
     delete[] this->data;
     this->data = new_string;
     this->size = new_size;
@@ -151,15 +153,92 @@ bool MyString::insert(int position, char *insert_data)
 
 bool MyString::erase(int position, int erase_length)
 {
-    // homework
+    if (position < 0 || position >= size)
+        return false;
+    if (erase_length < 0 || position + erase_length > size)
+        return false;
+
+    int new_size = this->size - erase_length;
+    const int start_position = position;
+    const int end_position = position + erase_length;
+    char *new_string = new char[new_size + 1];
+    int i = 0, idx = 0;
+
+    while (i < size)
+    {
+        if (i >= start_position && i < end_position)
+        {
+            i++;
+        }
+        else
+        {
+            new_string[idx++] = this->data[i++];
+        }
+    }
+    new_string[idx] = '\0';
+    delete[] this->data;
+    this->data = new_string;
+    this->size = new_size;
+    return true;
 }
-bool MyString::replace(int position, int replace_length, char *replace_data)
+
+bool MyString::replace(int position, int replace_length, const char *replace_data)
 {
-    // homework
+    if (position < 0 || position >= size)
+        return false;
+    if (replace_length < 0 || position + replace_length > size)
+        return false;
+
+    const int replace_data_length = static_cast<int>(strLength(replace_data));
+    const int end_position = position + replace_data_length;
+    int new_size = length() - replace_length + replace_data_length;
+    char *new_string = new char[new_size + 1];
+    int i = 0, idx = 0;
+    while (idx < new_size)
+    {
+        if (idx >= position && idx < end_position)
+        {
+            for (int j = 0; j < replace_data_length; j++)
+            {
+                new_string[idx++] = replace_data[j];
+            }
+            i += replace_length;
+        }
+        else
+        {
+            new_string[idx++] = this->data[i++];
+        }
+    }
+
+    new_string[new_size] = '\0';
+    delete[] this->data;
+    this->data = new_string;
+    this->size = new_size;
+    return true;
 }
-int MyString::find(int position, char *pattern) const
+int MyString::find(int position, const char *pattern) const
 {
-    // homework
+    if (position < 0 || position >= size)
+        return -1;
+
+    int pattern_length = (int)strLength(pattern);
+    int i = position, j = 0;
+    while (i < size)
+    {
+        if (data[i] == pattern[j])
+        {
+            j++;
+            if (j == pattern_length)
+                return i - j + 1;
+        }
+        else
+        {
+            i -= j;
+            j = 0;
+        }
+        i++;
+    }
+    return -1;
 }
 
 // Input - Output
@@ -182,6 +261,7 @@ std::istream &operator>>(std::istream &inp, MyString &self)
         self.data = newData;
         ++self.size;
     }
+    return inp;
 }
 
 std::ostream &operator<<(std::ostream &out, const MyString &self)
