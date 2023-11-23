@@ -39,24 +39,11 @@ void cLabStaff::addResearchingField(string sResearchingField)
     m_vResearchingFields.push_back(sResearchingField);
 }
 
-std::ostream &operator<<(std::ostream &out, const cLabStaff &labStaff)
+void cLabStaff::input(std::istream &in)
 {
-    out << (cSchoolStaff &)labStaff;
-    out << "+ Researching Time: " << labStaff.m_usResearchingTime << endl;
-    out << "+ Researching Fields: ";
-    for (auto &field : labStaff.m_vResearchingFields)
-    {
-        out << field << ", ";
-    }
-    out << endl;
-    return out;
-}
-
-std::istream &operator>>(std::istream &in, cLabStaff &labStaff)
-{
-    in >> (cSchoolStaff &)labStaff;
+    cSchoolStaff::input(in);
     cout << "+ Researching Time: ";
-    in >> labStaff.m_usResearchingTime;
+    in >> m_usResearchingTime;
     cout << "+ Researching Fields: (\"end\" to stop)" << endl;
     string sResearchingField;
     while (true)
@@ -66,7 +53,30 @@ std::istream &operator>>(std::istream &in, cLabStaff &labStaff)
         {
             break;
         }
-        labStaff.m_vResearchingFields.push_back(sResearchingField);
+        m_vResearchingFields.push_back(sResearchingField);
     }
+}
+
+void cLabStaff::output(std::ostream &out) const
+{
+    cSchoolStaff::output(out);
+    out << "+ Researching Time: " << m_usResearchingTime << endl;
+    out << "+ Researching Fields: ";
+    for (auto &field : m_vResearchingFields)
+    {
+        out << field << ", ";
+    }
+    out << endl;
+}
+
+std::ostream &operator<<(std::ostream &out, const cLabStaff &labStaff)
+{
+    labStaff.output(out);
+    return out;
+}
+
+std::istream &operator>>(std::istream &in, cLabStaff &labStaff)
+{
+    labStaff.input(in);
     return in;
 }

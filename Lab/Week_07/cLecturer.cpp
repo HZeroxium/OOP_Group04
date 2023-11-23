@@ -3,6 +3,7 @@
 cLecturer::cLecturer(string sFullName, cDate dateBirth, string sID, string sAcademicRank, string sAcademicDegree, unsigned short usTeachingTime, vector<string> vCourses)
     : cSchoolStaff(sFullName, dateBirth, sID), m_sAcademicRank(sAcademicRank), m_sAcademicDegree(sAcademicDegree), m_usTeachingTime(usTeachingTime), m_vCourses(vCourses)
 {
+    m_sType = "Lecturer";
 }
 
 void cLecturer::setAcademicRank(string sAcademicRank)
@@ -51,33 +52,18 @@ void cLecturer::calcSalary()
     setSalary(salary);
 }
 
-std::ostream &operator<<(std::ostream &out, const cLecturer &lecturer)
+void cLecturer::input(std::istream &in)
 {
-    out << (cSchoolStaff &)lecturer;
-    out << "+ Academic Rank: " << lecturer.m_sAcademicRank << endl;
-    out << "+ Academic Degree: " << lecturer.m_sAcademicDegree << endl;
-    out << "+ Teaching Time: " << lecturer.m_usTeachingTime << endl;
-    out << "+ Courses: ";
-    for (unsigned int i = 0; i < lecturer.m_vCourses.size(); i++)
-    {
-        out << "+ " << i << ". " << lecturer.m_vCourses[i];
-    }
-    out << endl;
-    return out;
-}
-
-std::istream &operator>>(std::istream &in, cLecturer &lecturer)
-{
-    in >> (cSchoolStaff &)lecturer;
+    cSchoolStaff::input(in);
     cout << "Enter lecturer's information:" << endl;
     cout << "+ Enter academic rank: ";
     fflush(stdin);
-    getline(in, lecturer.m_sAcademicRank);
+    getline(in, m_sAcademicRank);
     cout << "+ Enter academic degree: ";
     fflush(stdin);
-    getline(in, lecturer.m_sAcademicDegree);
+    getline(in, m_sAcademicDegree);
     cout << "+ Enter teaching time: ";
-    in >> lecturer.m_usTeachingTime;
+    in >> m_usTeachingTime;
     cout << "+ Enter number of courses: ";
     unsigned int uiNumOfCourses;
     in >> uiNumOfCourses;
@@ -87,7 +73,32 @@ std::istream &operator>>(std::istream &in, cLecturer &lecturer)
         fflush(stdin);
         string sCourse;
         getline(in, sCourse);
-        lecturer.m_vCourses.push_back(sCourse);
+        m_vCourses.push_back(sCourse);
     }
+}
+
+void cLecturer::output(std::ostream &out) const
+{
+    cSchoolStaff::output(out);
+    out << "+ Academic Rank: " << m_sAcademicRank << endl;
+    out << "+ Academic Degree: " << m_sAcademicDegree << endl;
+    out << "+ Teaching Time: " << m_usTeachingTime << endl;
+    out << "+ Courses: ";
+    for (unsigned int i = 0; i < m_vCourses.size(); i++)
+    {
+        out << "+ " << i << ". " << m_vCourses[i] << endl;
+    }
+    out << endl;
+}
+
+std::ostream &operator<<(std::ostream &out, const cLecturer &lecturer)
+{
+    lecturer.output(out);
+    return out;
+}
+
+std::istream &operator>>(std::istream &in, cLecturer &lecturer)
+{
+    lecturer.input(in);
     return in;
 }

@@ -3,6 +3,7 @@
 cSpecialist::cSpecialist(string sFullName, cDate dateBirth, string sID)
     : cLabStaff(sFullName, dateBirth, sID)
 {
+    m_sType = "Specialist";
 }
 
 void cSpecialist::calcSalary()
@@ -16,6 +17,6 @@ void cSpecialist::calcSalary()
             usNumOfFields++;
         }
     }
-    auto salary = static_cast<unsigned long>(m_usResearchingTime * 4 + usNumOfFields) * 20000;
+    unsigned long salary = (m_usResearchingTime * 4 + usNumOfFields) * 20000;
     setSalary(salary);
 }

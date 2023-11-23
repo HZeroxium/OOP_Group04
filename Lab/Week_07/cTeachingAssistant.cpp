@@ -3,6 +3,7 @@
 cTeachingAssistant::cTeachingAssistant(string sFullName, cDate dateBirth, string sID, unsigned short usNumCourses)
     : cSchoolStaff(sFullName, dateBirth, sID), m_usNumCourses(usNumCourses)
 {
+    m_sType = "Teaching Assistant";
 }
 
 void cTeachingAssistant::setNumCourses(unsigned short usNumCourses)
@@ -17,23 +18,33 @@ unsigned short cTeachingAssistant::getNumCourses() const
 
 void cTeachingAssistant::calcSalary()
 {
-    unsigned long salary = static_cast<unsigned long>(m_usNumCourses * 0.1) * 20000;
+    unsigned long salary = (m_usNumCourses * 0.1) * 20000;
     setSalary(salary);
+}
+
+void cTeachingAssistant::input(std::istream &in)
+{
+    cSchoolStaff::input(in);
+    cout << "Enter the following information of the teaching assistant:" << endl;
+    cout << "+ Number of Courses: ";
+    in >> m_usNumCourses;
+}
+
+void cTeachingAssistant::output(std::ostream &out) const
+{
+    cSchoolStaff::output(out);
+
+    out << "+ Number of Courses: " << m_usNumCourses << endl;
 }
 
 std::ostream &operator<<(std::ostream &out, const cTeachingAssistant &teachingAssistant)
 {
-    out << (cSchoolStaff &)teachingAssistant;
-
-    out << "+ Number of Courses: " << teachingAssistant.m_usNumCourses << endl;
+    teachingAssistant.output(out);
     return out;
 }
 
 std::istream &operator>>(std::istream &in, cTeachingAssistant &teachingAssistant)
 {
-    in >> (cSchoolStaff &)teachingAssistant;
-    cout << "Enter the following information of the teaching assistant:" << endl;
-    cout << "+ Number of Courses: ";
-    in >> teachingAssistant.m_usNumCourses;
+    teachingAssistant.input(in);
     return in;
 }

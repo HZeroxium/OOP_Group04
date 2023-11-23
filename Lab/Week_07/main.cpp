@@ -19,6 +19,8 @@ int main()
 
     vpSchoolStaff.resize(n);
 
+    int i = 0;
+
     for (auto &staff : vpSchoolStaff)
     {
         cout << "Enter type of staff (1: Researcher, 2: Specialist, 3: Lecturer, 4: Teaching Assistant): ";
@@ -43,14 +45,21 @@ int main()
             cout << "Invalid type." << endl;
             break;
         }
-
+        cout << "Enter information of staff " << ++i << " (" << staff->getType() << "): " << endl;
         cin >> *staff;
+        cout << "----------------------------------------" << endl;
     }
 
+    unsigned long long ullTotalSalary = 0;
     cout << "School Staff List: " << endl;
     for (auto &staff : vpSchoolStaff)
     {
+        cout << "----------------------------------------" << endl;
         staff->calcSalary();
         cout << *staff;
+        ullTotalSalary += staff->getSalary();
     }
+
+    cout << "----------------------------------------" << endl;
+    cout << "Total salary: " << ullTotalSalary << endl;
 }

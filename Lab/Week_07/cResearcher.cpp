@@ -3,6 +3,7 @@
 cResearcher::cResearcher(string sFullName, cDate dateBirth, string sID, unsigned int usResearchingTime, vector<string> vResearchingFields)
     : cLabStaff(sFullName, dateBirth, sID, usResearchingTime, vResearchingFields)
 {
+    m_sType = "Researcher";
 }
 
 void cResearcher::calcSalary()
@@ -20,5 +21,3 @@ void cResearcher::calcSalary()
     unsigned long ulSalary = (m_usResearchingTime * 2 + usNumOfFields) * 20000;
     setSalary(ulSalary);
 }
-
-

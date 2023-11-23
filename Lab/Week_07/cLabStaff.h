@@ -13,6 +13,7 @@ protected:
 
 public: // Constructors & Destructor
     cLabStaff(string sFullName = "", cDate dateBirth = cDate(), string sID = "", unsigned int usResearchingTime = 0, vector<string> vResearchingFields = vector<string>());
+    virtual ~cLabStaff() = default;
 
 public: // Setters
     void setResearchingTime(unsigned int usResearchingTime);
@@ -25,6 +26,10 @@ public: // Getters
 public: // Methods
     void addResearchingField(string sResearchingField);
     virtual void calcSalary() = 0;
+
+private: // Input & Output helper methods
+    virtual void input(std::istream &in);
+    virtual void output(std::ostream &out) const;
 
 public: // Input & Output
     friend std::ostream &operator<<(std::ostream &out, const cLabStaff &labStaff);

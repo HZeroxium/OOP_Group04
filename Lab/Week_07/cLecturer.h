@@ -5,7 +5,7 @@
 
 using std::vector;
 
-class cLecturer : public cSchoolStaff
+class cLecturer final : public cSchoolStaff
 {
 private:
     string m_sAcademicRank;
@@ -15,6 +15,7 @@ private:
 
 public: // Constructors & Destructor
     cLecturer(string sFullName = "", cDate dateBirth = cDate(), string sID = "", string sAcademicRank = "", string sAcademicDegree = "", unsigned short usTeachingTime = 0, vector<string> vCourses = vector<string>());
+    ~cLecturer() override = default;
 
 public: // Setters
     void setAcademicRank(string sAcademicRank);
@@ -30,6 +31,10 @@ public: // Getters
 
 public: // Methods
     void calcSalary() override;
+
+private: // Input & Output helper methods
+    void input(std::istream &in) override;
+    void output(std::ostream &out) const override;
 
 public: // Input & Output
     friend std::ostream &operator<<(std::ostream &out, const cLecturer &lecturer);

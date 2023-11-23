@@ -2,9 +2,10 @@
 
 #include "cLabStaff.h"
 
-class cSpecialist : public cLabStaff
+class cSpecialist final : public cLabStaff
 {
 public:
     cSpecialist(string sFullName = "", cDate dateBirth = cDate(), string sID = "");
+    ~cSpecialist() override = default;
     void calcSalary() override;
 };

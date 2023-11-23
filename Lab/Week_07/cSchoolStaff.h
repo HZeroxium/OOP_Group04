@@ -17,11 +17,15 @@ private:
     string m_sID;
 
 protected:
+    string m_sType;
+
+protected:
     unsigned long m_ulSalary;
     void setSalary(unsigned long ulSalary);
 
 public: // Constructors & Destructor
-    cSchoolStaff(string = "", cDate = cDate(), string = "");
+    cSchoolStaff(string = "", cDate = cDate(), string = "", string = "none");
+    virtual ~cSchoolStaff() = default;
 
 public: // Setters
     void setFullName(string sFullName);
@@ -33,9 +37,14 @@ public: // Getters
     cDate getDateBirth() const;
     string getID() const;
     unsigned long getSalary() const;
+    string getType() const;
 
 public: // Methods
     virtual void calcSalary() = 0;
+
+protected: // Input & Output helper methods
+    virtual void input(std::istream &in);
+    virtual void output(std::ostream &out) const;
 
 public: // Input & Output
     friend std::ostream &operator<<(std::ostream &out, const cSchoolStaff &schoolStaff);

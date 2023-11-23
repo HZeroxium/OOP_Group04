@@ -26,4 +26,6 @@ public:
 
     friend std::ostream &operator<<(std::ostream &out, const cDate &date);
     friend std::istream &operator>>(std::istream &in, cDate &date);
+
+    static bool isValidDate(unsigned short usDay, unsigned short usMonth, unsigned int uiYear);
 };
