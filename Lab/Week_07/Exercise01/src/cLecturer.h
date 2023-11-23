@@ -40,3 +40,26 @@ public: // Input & Output
     friend std::ostream &operator<<(std::ostream &out, const cLecturer &lecturer);
     friend std::istream &operator>>(std::istream &in, cLecturer &lecturer);
 };
+
+/**
+cLecturer
+- m_sAcademicRank: string
+- m_sAcademicDegree: string
+- m_usTeachingTime: unsigned short
+- m_vCourses: vector<string>
++ cLecturer(sFullName: string = "", dateBirth: cDate = cDate(), sID: string = "", sAcademicRank: string = "", sAcademicDegree: string = "", usTeachingTime: unsigned short = 0, vCourses: vector<string> = vector<string>())
++ ~cLecturer()
++ setAcademicRank(sAcademicRank: string): void
++ setAcademicDegree(sAcademicDegree: string): void
++ setTeachingTime(usTeachingTime: unsigned short): void
++ setCourses(vCourses: vector<string>): void
++ getAcademicRank(): string
++ getAcademicDegree(): string
++ getTeachingTime(): unsigned short
++ getCourses(): vector<string>
++ calcSalary(): void
++ friend operator<<(out: std::ostream&, lecturer: cLecturer&): std::ostream&
++ friend operator>>(in: std::istream&, lecturer: cLecturer&): std::istream&
+- virtual input(in: std::istream&): void
+- virtual output(out: std::ostream&) const: void
+ */

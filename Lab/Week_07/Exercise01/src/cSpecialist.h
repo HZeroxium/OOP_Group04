@@ -9,3 +9,10 @@ public:
     ~cSpecialist() override = default;
     void calcSalary() override;
 };
+
+/**
+cSpecialist
++ cSpecialist(sFullName: string = "", dateBirth: cDate = cDate(), sID: string = "")
++ ~cSpecialist()
++ calcSalary(): void
+ */

@@ -50,3 +50,28 @@ public: // Input & Output
     friend std::ostream &operator<<(std::ostream &out, const cSchoolStaff &schoolStaff);
     friend std::istream &operator>>(std::istream &in, cSchoolStaff &schoolStaff);
 };
+
+/**
+cSchoolStaff
+- m_sFullName: string
+- m_dateBirth: cDate
+- m_sID: string
+# m_sType: string
+# m_ulSalary: unsigned long
++ cSchoolStaff(sFullName: string = "", dateBirth: cDate = cDate(), sID: string = "", sType: string = "none")
++ ~cSchoolStaff()
++ setFullName(sFullName: string): void
++ setDateBirth(dateBirth: cDate): void
++ setID(sID: string): void
+# setSalary(ulSalary: unsigned long): void
++ getFullName(): string
++ getDateBirth(): cDate
++ getID(): string
++ getSalary(): unsigned long
++ getType(): string
++ virtual calcSalary() = 0: void
++ friend operator<<(out: std::ostream&, schoolStaff: cSchoolStaff&): std::ostream&
++ friend operator>>(in: std::istream&, schoolStaff: cSchoolStaff&): std::istream&
+# virtual input(in: std::istream&): void
+# virtual output(out: std::ostream&) const: void
+ */

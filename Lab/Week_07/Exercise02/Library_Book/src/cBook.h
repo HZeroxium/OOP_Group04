@@ -38,3 +38,24 @@ public:
     friend std::ostream &operator<<(std::ostream &out, const cBook &book);
     friend std::istream &operator>>(std::istream &in, cBook &book);
 };
+
+/**
+- m_sID: string
+- m_sName: string
+- m_sAuthor: string
+- m_uiYear: unsigned int
+- m_uiPages: unsigned int
++ cBook(sID: string = "", sName: string = "", sAuthor: string = "", uiYear: unsigned int = 0, uiPages: unsigned int = 0)
++ setID(sID: string): void
++ setName(sName: string): void
++ setAuthor(sAuthor: string): void
++ setYear(uiYear: unsigned int): void
++ setPages(uiPages: unsigned int): void
++ getID(): string
++ getName(): string
++ getAuthor(): string
++ getYear(): unsigned int
++ getPages(): unsigned int
++ operator<<(out: ostream, book: cBook): ostream
++ operator>>(in: istream, book: cBook): istream
+ */

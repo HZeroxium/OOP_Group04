@@ -28,3 +28,17 @@ public: // Input & Output
     friend std::ostream &operator<<(std::ostream &out, const cTeachingAssistant &teachingAssistant);
     friend std::istream &operator>>(std::istream &in, cTeachingAssistant &teachingAssistant);
 };
+
+/**
+cTeachingAssistant
+- m_usNumCourses: unsigned short
++ cTeachingAssistant(sFullName: string = "", dateBirth: cDate = cDate(), sID: string = "", usNumCourses: unsigned short = 0)
++ ~cTeachingAssistant()
++ setNumCourses(usNumCourses: unsigned short): void
++ getNumCourses(): unsigned short
++ calcSalary(): void
++ friend operator<<(out: std::ostream&, teachingAssistant: cTeachingAssistant&): std::ostream&
++ friend operator>>(in: std::istream&, teachingAssistant: cTeachingAssistant&): std::istream&
+- virtual input(in: std::istream&): void
+- virtual output(out: std::ostream&) const: void
+ */

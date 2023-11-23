@@ -31,3 +31,20 @@ public:
     friend std::ostream &operator<<(std::ostream &out, const cRectangle &rectangle);
     friend std::istream &operator>>(std::istream &in, cRectangle &rectangle);
 };
+
+/**
+- m_dWidth: double
+- m_dHeight: double
++ cRectangle(dWidth: double = 0, dHeight: double = 0)
++ setWidth(dWidth: double): void
++ setHeight(dHeight: double): void
++ setDimensions(dWidth: double, dHeight: double): void
++ getWidth(): double
++ getHeight(): double
++ getArea(): double
++ getPerimeter(): double
++ input(in: istream): virtual void
++ output(out: ostream) const: virtual void
++ operator<<(out: ostream, rectangle: cRectangle): ostream
++ operator>>(in: istream, rectangle: cRectangle): istream
+ */

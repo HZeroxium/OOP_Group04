@@ -25,3 +25,17 @@ public:
     friend std::ostream &operator<<(std::ostream &out, const cLibrary &library);
     friend std::istream &operator>>(std::istream &in, cLibrary &library);
 };
+
+/**
+- m_sName: string
+- m_vBookShelves: vector<cBookShelf>
++ cLibrary(sName: string = "", vBookShelves: vector<cBookShelf> = vector<cBookShelf>())
++ setName(sName: string): void
++ setBookShelves(vBookShelves: vector<cBookShelf>): void
++ getName(): string
++ getBookShelves(): vector<cBookShelf> *
++ addBookShelf(bookShelf: cBookShelf): void
++ removeBookShelfByID(sID: string): void
++ operator<<(out: ostream, library: cLibrary): ostream
++ operator>>(in: istream, library: cLibrary): istream
+ */

@@ -1,5 +1,7 @@
 # Exercise 03
 
+![image](image.png)
+
 ## Table of Contents
 
 - [Exercise 03](#exercise-03)
