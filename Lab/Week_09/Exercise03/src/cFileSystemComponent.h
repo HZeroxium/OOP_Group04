@@ -19,3 +19,13 @@ public: // Pure virtual methods
     virtual string getName() const = 0;
     virtual float getSize() const = 0;
 };
+
+/*
+cFileSystemComponent
+# m_sName: string
+# m_fSize: float
++ cFileSystemComponent(const string & = "", float = 0.0f)
++ virtual ~cFileSystemComponent() = default
++ virtual string getName() const = 0
++ virtual float getSize() const = 0
+*/

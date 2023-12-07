@@ -13,3 +13,11 @@ public: // Override Methods
     string getName() const override;
     float getSize() const override;
 };
+
+/*
+cFile
++ cFile(sName: string = "", fSize: float = 0.0f)
++ ~cFile()
++ getName(): string
++ getSize(): float
+*/

@@ -39,3 +39,21 @@ public: // Methods
     void navigateToSubFolder(const string &sName);
     void navigateToParentFolder();
 };
+
+/*
+cFileSystemManager
+- m_pInstance: static cFileSystemManager*
+- m_pRoot: cFolder*
++ static cFileSystemManager* getInstance()
++ static void destroyInstance()
++ getRootFolder(): cFolder*
++ setRootFolder(pRoot: cFolder*): void
++ addFile(sName: const string&, fSize: float): bool
++ addFolder(sName: const string&): bool
++ removeFile(sName: const string&): bool
++ removeFolder(sName: const string&): bool
++ printFileSystem(): void
++ calcTotalSize(): void
++ navigateToSubFolder(sName: const string&): void
++ navigateToParentFolder(): void
+*/

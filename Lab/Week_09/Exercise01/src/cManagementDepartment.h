@@ -57,6 +57,8 @@ public: // Print methods
 /*
 cManagementDepartment
 - vector<unique_ptr<cSchoolStaff>> m_vpSchoolStaff
+- m_pInstance: static cManagementDepartment*
++ static cManagementDepartment* getInstance()
 + const vector<unique_ptr<cSchoolStaff>>& getStaffList() const
 + void updateSalary()
 + unsigned long calcTotalSalary()

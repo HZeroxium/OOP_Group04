@@ -30,3 +30,19 @@ public: // Override Methods
 
     void print() const;
 };
+
+/*
+cFolder
+- m_pParent: cFolder *
+- m_vComponents: vector<cFileSystemComponent *>
++ cFolder(sName: string = "")
++ ~cFolder()
++ getComponents(): vector<cFileSystemComponent *>
++ getParent(): cFolder *
++ setParent(parent: cFolder *): void
++ getName(): string
++ getSize(): float
++ addComponent(component: cFileSystemComponent *): void
++ removeComponent(component: cFileSystemComponent *): void
++ print(): void
+*/
