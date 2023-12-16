@@ -7,6 +7,7 @@
 #include "cDate.h"
 #include <vector>
 #include "cProduct.h"
+#include "iShippingStrategy.h"
 
 using std::pair;
 using std::vector;
@@ -33,10 +34,11 @@ private:
     double m_dTotalPrice;                              ///< Total price of the order
     double m_dFinalPrice;                              ///< Final price of the order
     vector<pair<Product *, unsigned int>> m_vProducts; ///< List of products in the order
+    ShippingStrategy *m_pShippingStrategy;             ///< Shipping strategy of the order
 
 public: // Constructors & Destructor
     Order();
-    Order(const string &sOrderCode, const Date &orderDate, OrderState *pCurrentOrderState, unsigned int uiQuantity, double dTotalPrice, double dFinalPrice);
+    Order(const string &sOrderCode, const Date &orderDate, OrderState *pCurrentOrderState, unsigned int uiQuantity, double dTotalPrice, double dFinalPrice, const vector<pair<Product *, unsigned int>> &vProducts, ShippingStrategy *pShippingStrategy);
     Order(const Order &other);
     ~Order();
 
@@ -47,6 +49,8 @@ public: // Getters
     unsigned int getQuantity() const;
     double getTotalPrice() const;
     double getFinalPrice() const;
+    vector<pair<Product *, unsigned int>> getProducts() const;
+    ShippingStrategy *getShippingStrategy() const;
 
 public: // Setters
     void setOrderCode(const string &sOrderCode);
@@ -55,6 +59,8 @@ public: // Setters
     void setQuantity(unsigned int uiQuantity);
     void setTotalPrice(double dTotalPrice);
     void setFinalPrice(double dFinalPrice);
+    void setProducts(const vector<pair<Product *, unsigned int>> &vProducts);
+    void setShippingStrategy(ShippingStrategy *pShippingStrategy);
 
 public: // Actions
     void process();
