@@ -22,6 +22,7 @@ protected:
     vector<Product *> m_vProducts; ///< List of products in the category
 
 public:
+    void setName(const string &sName);
     string getName() const;
     virtual ~ProductCategory() = default;
     virtual void display() const = 0;
@@ -49,6 +50,7 @@ public: // Constructors & Destructor
     ~CompositeProductCategory();
 
 public: // Display
+    const vector<ProductCategory *> &getSubCategories() const;
     void display() const override;
 
 public: // Add & Remove

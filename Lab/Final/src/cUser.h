@@ -55,7 +55,6 @@ private:
     string m_sAddress;       ///< Address of the customer
     vector<Order> m_vOrders; ///< List of orders of the customer
     CustomerRank *m_pRank;   ///< Rank of the customer
-    string m_sRankName;      ///< Name of the rank of the customer
 
 public: // Constructors & Destructor
     Customer();
@@ -67,13 +66,14 @@ public: // Getters
     string getAddress() const;
     vector<Order> getOrders() const;
     CustomerRank *getRank() const;
-    string getRankName() const;
 
 public: // Setters
     void setAddress(const string &sAddress);
     void setOrders(const vector<Order> &vOrders);
     void setRank(CustomerRank *pRank);
-    void setRankName(const string &sRankName);
+
+private: // Helpers
+    void loadOrders();
 
 public: // Methods
     void display() const override;

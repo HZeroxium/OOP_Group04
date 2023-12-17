@@ -18,6 +18,8 @@ protected:
     double m_dMaxAmount;  ///< Maximum amount of discount
 
 public:
+    double getPercentage() const;
+    double getMaxAmount() const;
     virtual double applyDiscount(const Order &order) const = 0;
     virtual ~DiscountCode() = default;
 };
@@ -37,6 +39,7 @@ private:
     string m_sCategory; ///< Category of products to apply the discount
 
 public:
+    string getCategory() const;
     CategoryDiscountCode(double percentage, double maxAmount, const string &category);
     double applyDiscount(const Order &order) const override;
 };

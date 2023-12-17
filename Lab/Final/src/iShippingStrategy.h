@@ -26,3 +26,10 @@ class ExpressShipping : public ShippingStrategy
 public:
     double calculateShippingCost(unsigned int orderAmount) const override;
 };
+
+/// @brief Enum for shipping strategy type
+enum ShippingStrategyType
+{
+    STANDARD,
+    EXPRESS
+};

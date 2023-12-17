@@ -30,6 +30,7 @@ public: // Shopping cart methods
     void removeProduct(Product *pProduct) override;
     size_t getProductCount() const override;
     Product *getProductAtIndex(size_t index) const;
+    const vector<pair<Product *, unsigned int>> &getProducts() const;
     void display() const;
     void checkout();
 };

@@ -68,6 +68,14 @@ public: // Actions
     void deliver();
     void cancel();
     void display() const;
+
+public: // Methods
+    void addProduct(Product *pProduct, unsigned int uiQuantity);
+    void removeProduct(Product *pProduct);
+    void updateTotalPrice();
+    void updateFinalPrice();
+    void updateShippingStrategy();
+    void updateOrderState();
 };
 
 /// @brief Concrete state class of the State Pattern
@@ -110,4 +118,13 @@ public:
     void shipOrder(Order &order) override;
     void deliverOrder(Order &order) override;
     void cancelOrder(Order &order) override;
+};
+
+/// @brief Enum class representing the state of the order
+enum OrderStatus
+{
+    PROCESSING,
+    SHIPPING,
+    DELIVERED,
+    CANCELLED
 };

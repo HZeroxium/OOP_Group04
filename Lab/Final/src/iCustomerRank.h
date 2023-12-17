@@ -1,9 +1,21 @@
 #pragma once
 
+#include <string>
+using std::string;
+
+enum CustomerRankType
+{
+    REGULAR,
+    BRONZE,
+    SILVER,
+    GOLD
+};
+
 /// @brief Abstract class for customer ranks using the Strategy design pattern
 class CustomerRank
 {
 public:
+    void getRankName() const;
     virtual double applyDiscount(double price) const = 0;
     virtual ~CustomerRank() = default;
 };
