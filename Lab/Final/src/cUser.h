@@ -18,6 +18,7 @@ private:
 
 public: // Constructors & Destructor
     User();
+    User(const string &sUsername, const string &sPassword);
     User(const string &sUsername, const string &sPassword, const Date &joinDate, const string &sFullName, const string &sEmail, const string &sPhoneNumber, const Date &birthDate, const string &sGender);
     User(const User &);
     ~User() = default;
@@ -44,6 +45,7 @@ public: // Setters
 
 public: // Methods
     virtual void display() const;
+    virtual void loadAdditionalData();
 };
 
 class Customer : public User
@@ -67,4 +69,5 @@ public: // Setters
 
 public: // Methods
     void display() const override;
+    void loadAdditionalData() override;
 };
