@@ -11,6 +11,7 @@ using std::vector;
 class Product : public Observer
 {
 private:
+    string m_sID;              ///< ID of the product
     string m_sName;            ///< Name of the product
     string m_sCategory;        ///< Category of the product
     double m_dPrice;           ///< Price of the product (in VND)
@@ -19,11 +20,12 @@ private:
 
 public: // Constructors & Destructor
     Product();
-    Product(const string &sName, const string &sCategory, double dPrice, unsigned int uiQuantity, bool bIsOnFlashSale = false);
+    Product(const string &sID, const string &sName, const string &sCategory, double dPrice, unsigned int uiQuantity, bool bIsOnFlashSale = false);
     Product(const Product &other);
     ~Product();
 
 public: // Getters
+    string getID() const;
     string getName() const;
     string getCategory() const;
     double getPrice() const;
@@ -31,6 +33,7 @@ public: // Getters
     bool getFlashSaleStatus() const;
 
 public: // Setters
+    void setID(const string &sID);
     void setName(const string &sName);
     void setCategory(const string &sCategory);
     void setPrice(double dPrice);

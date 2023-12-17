@@ -14,8 +14,9 @@ Product::Product()
     m_bIsOnFlashSale = false;
 }
 
-Product::Product(const string &sName, const string &sCategory, double dPrice, unsigned int uiQuantity, bool bIsOnFlashSale)
+Product::Product(const string &sID, const string &sName, const string &sCategory, double dPrice, unsigned int uiQuantity, bool bIsOnFlashSale)
 {
+    m_sID = sID;
     m_sName = sName;
     m_sCategory = sCategory;
     m_dPrice = dPrice;
@@ -25,6 +26,7 @@ Product::Product(const string &sName, const string &sCategory, double dPrice, un
 
 Product::Product(const Product &other)
 {
+    m_sID = other.m_sID;
     m_sName = other.m_sName;
     m_sCategory = other.m_sCategory;
     m_dPrice = other.m_dPrice;
@@ -39,6 +41,11 @@ Product::~Product()
 //******************************************************************************************************
 //********************************************** GETTERS ***********************************************
 //******************************************************************************************************
+
+string Product::getID() const
+{
+    return m_sID;
+}
 
 string Product::getName() const
 {
@@ -68,6 +75,11 @@ bool Product::getFlashSaleStatus() const
 //******************************************************************************************************
 //********************************************** SETTERS ***********************************************
 //******************************************************************************************************
+
+void Product::setID(const string &sID)
+{
+    m_sID = sID;
+}
 
 void Product::setName(const string &sName)
 {

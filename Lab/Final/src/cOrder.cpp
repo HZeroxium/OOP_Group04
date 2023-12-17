@@ -18,7 +18,7 @@ Order::Order()
     m_dFinalPrice = 0;
 }
 
-Order::Order(const string &sOrderCode, const Date &orderDate, OrderState *pCurrentOrderState, unsigned int uiQuantity, double dTotalPrice, double dFinalPrice)
+Order::Order(const string &sOrderCode, const Date &orderDate, OrderState *pCurrentOrderState, unsigned int uiQuantity, double dTotalPrice, double dFinalPrice, const vector<pair<Product *, unsigned int>> &vProducts, ShippingStrategy *pShippingStrategy)
 {
     m_sOrderCode = sOrderCode;
     m_orderDate = orderDate;
@@ -26,6 +26,8 @@ Order::Order(const string &sOrderCode, const Date &orderDate, OrderState *pCurre
     m_uiQuantity = uiQuantity;
     m_dTotalPrice = dTotalPrice;
     m_dFinalPrice = dFinalPrice;
+    m_vProducts = vProducts;
+    m_pShippingStrategy = pShippingStrategy;
 }
 
 Order::Order(const Order &other)
@@ -36,6 +38,8 @@ Order::Order(const Order &other)
     m_uiQuantity = other.m_uiQuantity;
     m_dTotalPrice = other.m_dTotalPrice;
     m_dFinalPrice = other.m_dFinalPrice;
+    m_vProducts = other.m_vProducts;
+    m_pShippingStrategy = other.m_pShippingStrategy;
 }
 
 Order::~Order()
