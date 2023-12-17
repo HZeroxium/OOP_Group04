@@ -1,4 +1,5 @@
 #include "cProduct.h"
+#include <iostream>
 
 //******************************************************************************************************
 //************************************ CONSTRUCTORS & DESTRUCTOR ****************************************
@@ -10,14 +11,16 @@ Product::Product()
     m_sCategory = "";
     m_dPrice = 0;
     m_uiQuantity = 0;
+    m_bIsOnFlashSale = false;
 }
 
-Product::Product(const string &sName, const string &sCategory, double dPrice, unsigned int uiQuantity)
+Product::Product(const string &sName, const string &sCategory, double dPrice, unsigned int uiQuantity, bool bIsOnFlashSale)
 {
     m_sName = sName;
     m_sCategory = sCategory;
     m_dPrice = dPrice;
     m_uiQuantity = uiQuantity;
+    m_bIsOnFlashSale = bIsOnFlashSale;
 }
 
 Product::Product(const Product &other)
@@ -26,6 +29,7 @@ Product::Product(const Product &other)
     m_sCategory = other.m_sCategory;
     m_dPrice = other.m_dPrice;
     m_uiQuantity = other.m_uiQuantity;
+    m_bIsOnFlashSale = other.m_bIsOnFlashSale;
 }
 
 Product::~Product()
@@ -56,6 +60,11 @@ unsigned int Product::getQuantity() const
     return m_uiQuantity;
 }
 
+bool Product::getFlashSaleStatus() const
+{
+    return m_bIsOnFlashSale;
+}
+
 //******************************************************************************************************
 //********************************************** SETTERS ***********************************************
 //******************************************************************************************************
@@ -80,6 +89,14 @@ void Product::setQuantity(unsigned int uiQuantity)
     m_uiQuantity = uiQuantity;
 }
 
+void Product::setFlashSale(bool bIsOnFlashSale)
+{
+    if (m_bIsOnFlashSale != bIsOnFlashSale)
+    {
+        update(bIsOnFlashSale);
+    }
+}
+
 //******************************************************************************************************
 //********************************************** DISPLAY ***********************************************
 //******************************************************************************************************
@@ -87,4 +104,29 @@ void Product::setQuantity(unsigned int uiQuantity)
 void Product::display() const
 {
     // Implement here
+}
+
+//******************************************************************************************************
+//********************************************** METHODS ************************************************
+//******************************************************************************************************
+
+void Product::update(bool bFlashSale)
+{
+    bool isSame = (m_bIsOnFlashSale == bFlashSale);
+    if (!isSame)
+    {
+        m_bIsOnFlashSale = bFlashSale;
+        if (m_bIsOnFlashSale)
+        {
+            const double newPrice = m_dPrice * (1 - FlashSale::FLASH_SALE_PERCENTAGE);
+            setPrice(newPrice);
+            std::cout << "!!! FLASH SALE !!! Price of " << m_sName << " is now " << m_dPrice << " VND" << std::endl;
+        }
+        else
+        {
+            const double newPrice = m_dPrice / (1 - FlashSale::FLASH_SALE_PERCENTAGE);
+            setPrice(newPrice);
+            std::cout << "!!! FLASH SALE is over !!! Price of " << m_sName << " is now " << m_dPrice << " VND" << std::endl;
+        }
+    }
 }
