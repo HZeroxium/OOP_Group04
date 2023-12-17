@@ -67,15 +67,10 @@ public: // Actions
     void ship();
     void deliver();
     void cancel();
-    void display() const;
 
 public: // Methods
     void addProduct(Product *pProduct, unsigned int uiQuantity);
     void removeProduct(Product *pProduct);
-    void updateTotalPrice();
-    void updateFinalPrice();
-    void updateShippingStrategy();
-    void updateOrderState();
 };
 
 /// @brief Concrete state class of the State Pattern

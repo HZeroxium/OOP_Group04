@@ -40,9 +40,6 @@ public: // Setters
     void setQuantity(unsigned int uiQuantity);
     void setFlashSale(bool bIsOnFlashSale);
 
-public: // Display
-    void display() const;
-
 public: // Methods
     void update(bool bFlashSale) override;
 };

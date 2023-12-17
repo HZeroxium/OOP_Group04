@@ -7,7 +7,7 @@
 
 class User
 {
-private:
+protected:
     string m_sUsername;    ///< Username of the user
     string m_sPassword;    ///< Password of the user
     Date m_joinDate;       ///< Join date of the user

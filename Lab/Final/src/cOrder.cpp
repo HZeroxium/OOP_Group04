@@ -16,6 +16,8 @@ Order::Order()
     m_uiQuantity = 0;
     m_dTotalPrice = 0;
     m_dFinalPrice = 0;
+    m_vProducts = vector<pair<Product *, unsigned int>>();
+    m_pShippingStrategy = nullptr;
 }
 
 Order::Order(const string &sOrderCode, const Date &orderDate, OrderState *pCurrentOrderState, unsigned int uiQuantity, double dTotalPrice, double dFinalPrice, const vector<pair<Product *, unsigned int>> &vProducts, ShippingStrategy *pShippingStrategy)
@@ -82,6 +84,16 @@ double Order::getFinalPrice() const
     return m_dFinalPrice;
 }
 
+vector<pair<Product *, unsigned int>> Order::getProducts() const
+{
+    return m_vProducts;
+}
+
+ShippingStrategy *Order::getShippingStrategy() const
+{
+    return m_pShippingStrategy;
+}
+
 //******************************************************************************************************
 //********************************************* SETTERS ************************************************
 //******************************************************************************************************
@@ -117,6 +129,16 @@ void Order::setFinalPrice(double dFinalPrice)
     m_dFinalPrice = dFinalPrice;
 }
 
+void Order::setProducts(const vector<pair<Product *, unsigned int>> &vProducts)
+{
+    m_vProducts = vProducts;
+}
+
+void Order::setShippingStrategy(ShippingStrategy *pShippingStrategy)
+{
+    m_pShippingStrategy = pShippingStrategy;
+}
+
 //******************************************************************************************************
 //********************************************* ACTIONS ************************************************
 //******************************************************************************************************
@@ -141,9 +163,41 @@ void Order::cancel()
     m_pCurrentOrderState->cancelOrder(*this);
 }
 
-void Order::display() const
+//******************************************************************************************************
+//********************************************* METHODS ************************************************
+//******************************************************************************************************
+
+void Order::addProduct(Product *pProduct, unsigned int uiQuantity)
 {
-    // Implement here
+    // Find if the product already exists
+    for (auto it = m_vProducts.begin(); it != m_vProducts.end(); ++it)
+    {
+        if ((*it).first->getName() == pProduct->getName())
+        {
+            // If it does, add the quantity of the new product to the existing product
+            const unsigned int uiOldQuantity = (*it).second;
+            const unsigned int uiNewQuantity = uiQuantity;
+            (*it).second = uiOldQuantity + uiNewQuantity;
+            return;
+        }
+    }
+
+    // If it doesn't, add the new product to the list
+    m_vProducts.push_back(pair<Product *, unsigned int>(pProduct, uiQuantity));
+}
+
+void Order::removeProduct(Product *pProduct)
+{
+    // Find if the product exists
+    for (auto it = m_vProducts.begin(); it != m_vProducts.end(); ++it)
+    {
+        if ((*it).first->getName() == pProduct->getName())
+        {
+            // If it does, remove the product from the list
+            m_vProducts.erase(it);
+            return;
+        }
+    }
 }
 
 //======================================================================================================

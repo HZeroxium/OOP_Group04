@@ -29,9 +29,6 @@ public: // Setters
     void setName(const string &sName);
     void setJoinDate(const Date &joinDate);
 
-public: // Display
-    void display() const;
-
 public: // Add & Remove
     bool addProduct(Product *pProduct);
     bool removeProduct(Product *pProduct);

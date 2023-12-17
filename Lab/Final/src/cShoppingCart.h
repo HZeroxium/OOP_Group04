@@ -7,7 +7,9 @@
 
 #include "cProduct.h"
 #include "iProductIterator.h"
+#include "cUser.h"
 #include <vector>
+#include "uDataManager.h"
 
 using std::pair;
 using std::vector;
@@ -26,15 +28,17 @@ public: // Singleton Methods
     ~ShoppingCart() = default;
 
 public: // Shopping cart methods
+    ProductIterator *createIterator() override;
     void addProduct(Product *pProduct, unsigned int uiQuantity) override;
     void removeProduct(Product *pProduct) override;
     size_t getProductCount() const override;
     Product *getProductAtIndex(size_t index) const;
+
     const vector<pair<Product *, unsigned int>> &getProducts() const;
-    void display() const;
-    void checkout();
 
     Product *findProduct(const string &sName) const;
     void increaseQuantity(const string &sName, unsigned int uiQuantity);
     void decreaseQuantity(const string &sName, unsigned int uiQuantity);
+
+    bool loadCurrentUsersShoppingCart(User *pUser);
 };
