@@ -33,4 +33,8 @@ public: // Shopping cart methods
     const vector<pair<Product *, unsigned int>> &getProducts() const;
     void display() const;
     void checkout();
+
+    Product *findProduct(const string &sName) const;
+    void increaseQuantity(const string &sName, unsigned int uiQuantity);
+    void decreaseQuantity(const string &sName, unsigned int uiQuantity);
 };

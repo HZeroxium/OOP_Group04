@@ -14,10 +14,13 @@
 class DiscountCode
 {
 protected:
+    string m_sCode;       ///< Code of the discount
     double m_dPercentage; ///< Percentage of discount
     double m_dMaxAmount;  ///< Maximum amount of discount
 
 public:
+    string getCode() const;
+    void setCode(const string &code);
     double getPercentage() const;
     double getMaxAmount() const;
     virtual double applyDiscount(const Order &order) const = 0;

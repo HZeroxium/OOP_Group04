@@ -58,6 +58,7 @@ private:
 
 public: // Constructors & Destructor
     Customer();
+    Customer(const string &sUsername, const string &sPassword);
     Customer(const string &sUsername, const string &sPassword, const Date &joinDate, const string &sFullName, const string &sEmail, const string &sPhoneNumber, const Date &birthDate, const string &sGender, const string &sAddress, const vector<Order> &vOrders, CustomerRank *pRank);
     Customer(const Customer &);
     ~Customer() = default;
@@ -76,6 +77,7 @@ private: // Helpers
     void loadOrders();
 
 public: // Methods
+    void addOrder(const Order &order);
     void display() const override;
     void loadAdditionalData() override;
 };

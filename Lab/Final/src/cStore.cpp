@@ -43,7 +43,7 @@ Date Store::getJoinDate() const
     return m_joinDate;
 }
 
-vector<Product *> Store::getProducts() const
+vector<Product *> &Store::getProducts()
 {
     return m_vProducts;
 }

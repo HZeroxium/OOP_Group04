@@ -13,14 +13,16 @@
 
 class DataManager
 {
-private:
+public:
     vector<Product> m_vProducts;                  ///< List of products
     vector<User *> m_vUsers;                      ///< List of users
     vector<Order> m_vOrders;                      ///< List of orders
     vector<Store> m_vStores;                      ///< List of stores
     vector<ProductCategory> m_vProductCategories; ///< List of product categories
     vector<DiscountCode *> m_vDiscountCodes;      ///< List of discount codes
-    DataManager();                                ///< Private constructor of the Singleton Pattern
+
+private:
+    DataManager(); ///< Private constructor of the Singleton Pattern
 
 public: // Singleton Methods
     static DataManager &getInstance();
@@ -57,10 +59,18 @@ public: // Singleton Getters
     DataStorageSystem &getDataStorageSystem();
 
 public: // Getters
-    vector<Product> getProducts() const;
-    vector<User *> getUsers() const;
-    vector<Order> getOrders() const;
-    vector<Store> getStores() const;
-    vector<ProductCategory> getProductCategories() const;
-    vector<DiscountCode *> getDiscountCodes() const;
+    vector<Product> &getProducts();
+    vector<User *> &getUsers();
+    vector<Order> &getOrders();
+    vector<Store> &getStores();
+    vector<ProductCategory> &getProductCategories();
+    vector<DiscountCode *> &getDiscountCodes();
+
+public: // Accessors
+    Product *getProduct(const string &sProductName) const;
+    Product *getProductByCategory(const string &sProductName, const string &sProductCategoryName) const;
+    User *getUser(const string &sUsername, const string &password) const;
+    Store *getStore(const string &sStoreName) const;
+    ProductCategory *getProductCategory(const string &sProductCategoryName) const;
+    DiscountCode *getDiscountCode(const string &sDiscountCodeName) const;
 };

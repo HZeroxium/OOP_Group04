@@ -22,7 +22,8 @@ public: // Constructors & Destructor
 public: // Getters
     string getName() const;
     Date getJoinDate() const;
-    vector<Product *> getProducts() const;
+    vector<Product *> &getProducts();
+    Product *getProduct(const string &sName) const;
 
 public: // Setters
     void setName(const string &sName);

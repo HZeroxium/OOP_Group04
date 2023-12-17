@@ -95,18 +95,19 @@ string DataConverter::convertStoreToString(const Store &store)
 string DataConverter::convertDiscountCodeToString(const DiscountCode *discountCode)
 {
     /* Example
-    overall,10,1000,
-    category,Electronics,10,1000,
-    birthday,10,1000,
+    001,overall,10,1000,
+    002,category,10,1000,Electronics,
+    003,birthday,10,1000,
     */
     string sDiscountCode = "";
+    sDiscountCode += discountCode->getCode() + ",";
     if (dynamic_cast<const OverallDiscountCode *>(discountCode))
     {
         sDiscountCode += "overall,";
     }
     else if (dynamic_cast<const CategoryDiscountCode *>(discountCode))
     {
-        sDiscountCode += "category," + dynamic_cast<const CategoryDiscountCode *>(discountCode)->getCategory() + ",";
+        sDiscountCode += "category,";
     }
     else if (dynamic_cast<const BirthdayDiscountCode *>(discountCode))
     {
@@ -115,6 +116,11 @@ string DataConverter::convertDiscountCodeToString(const DiscountCode *discountCo
 
     sDiscountCode += std::to_string(discountCode->getPercentage()) + ",";
     sDiscountCode += std::to_string(discountCode->getMaxAmount()) + ",";
+
+    if (dynamic_cast<const CategoryDiscountCode *>(discountCode))
+    {
+        sDiscountCode += dynamic_cast<const CategoryDiscountCode *>(discountCode)->getCategory() + ",";
+    }
     return sDiscountCode;
 }
 
@@ -232,9 +238,10 @@ DiscountCode *DataConverter::convertStringToDiscountCode(const string &sDiscount
 {
     constexpr char cDelimiter = ',';
     std::stringstream ss(sDiscountCode);
-    string sType, sCategory;
+    string sType, sCategory, sCode;
     int iPercentage, iMaxAmount;
 
+    std::getline(ss, sCode, cDelimiter);
     std::getline(ss, sType, cDelimiter);
     ss >> iPercentage;
     ss.ignore();

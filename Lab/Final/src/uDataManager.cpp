@@ -204,8 +204,10 @@ bool DataManager::saveStoreProductList(const Store &store)
         std::cout << "!!!ERROR: Cannot open file " << sStoreProductListFilePath << " to save data" << std::endl;
         return false;
     }
+    // Remove const-quanlifier to call getProducts()
+    Store &storeRef = const_cast<Store &>(store);
 
-    const vector<Product *> &vProducts = store.getProducts();
+    const vector<Product *> &vProducts = storeRef.getProducts();
 
     for (const Product *product : vProducts)
     {
@@ -572,4 +574,50 @@ bool DataManager::loadDiscountCodes()
 
     fin.close();
     return true;
+}
+
+//******************************************************************************************************
+//************************************** GETTERS *******************************************************
+//******************************************************************************************************
+
+vector<Product> &DataManager::getProducts()
+{
+    return m_vProducts;
+}
+
+vector<User *> &DataManager::getUsers()
+{
+    return m_vUsers;
+}
+
+vector<Order> &DataManager::getOrders()
+{
+    return m_vOrders;
+}
+
+vector<Store> &DataManager::getStores()
+{
+    return m_vStores;
+}
+
+vector<ProductCategory> &DataManager::getProductCategories()
+{
+    return m_vProductCategories;
+}
+
+vector<DiscountCode *> &DataManager::getDiscountCodes()
+{
+    return m_vDiscountCodes;
+}
+
+User *DataManager::getUser(const string &sUsername, const string &password) const
+{
+    for (User *pUser : m_vUsers)
+    {
+        if (pUser->getUsername() == sUsername && pUser->getPassword() == password)
+        {
+            return pUser;
+        }
+    }
+    return nullptr;
 }
