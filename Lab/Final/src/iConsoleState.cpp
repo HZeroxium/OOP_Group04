@@ -2,6 +2,7 @@
 
 #include "uConsoleDecorator.h"
 #include "uDataManager.h"
+#include "cShoppingCart.h"
 
 using std::cin;
 
@@ -175,6 +176,7 @@ void HomeState::handleInput(Console &console)
     if (iChoice == 4)
     {
         console::printNotification("Redirecting to shopping cart...");
+        ShoppingCart::getInstance().loadCurrentUsersShoppingCart(console.getCurrentUser());
         console.setState(std::make_unique<ShoppingCartState>());
         return;
     }
@@ -494,6 +496,7 @@ void CheckoutState::handleInput(Console &console)
     if (iChoice == 0)
     {
         console::printNotification("Redirecting to shopping cart...");
+        ShoppingCart::getInstance().loadCurrentUsersShoppingCart(console.getCurrentUser());
         console.setState(std::make_unique<ShoppingCartState>());
         return;
     }
@@ -685,6 +688,7 @@ void CustomerState::handleInput(Console &console)
     if (iChoice == 2)
     {
         console::printNotification("Redirecting to shopping cart...");
+        ShoppingCart::getInstance().loadCurrentUsersShoppingCart(console.getCurrentUser());
         console.setState(std::make_unique<ShoppingCartState>());
         return;
     }
